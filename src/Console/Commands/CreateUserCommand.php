@@ -31,11 +31,12 @@ class CreateUserCommand extends Command
         $email = $input->getArgument('email');
         $password = $input->getArgument('password');
 
+        $password_was_generated = false;
+
         if ($password == NULL) {
             $password = str_random(16);
+            $password_was_generated = true;
         }
-        
-        $output->writeln($password);
 
         if (data()->has('users', $username)) {
             $output->writeln("A user with that username already exists.");
@@ -49,15 +50,16 @@ class CreateUserCommand extends Command
             }
         }
 
-        $output->writeln('adding ' .$username);
-
         data()->set('users', $username, [
-            'admin' => false,
+            'admin' => $input->getOption('admin'),
             'email' => $email,
             'password' => password_hash($password, PASSWORD_DEFAULT),
         ]);
 
-        $output->writeln("User created. Password is " .$password);
+        $output->writeln($input->getOption('admin') ? 'Admin user created.' : 'User created.');
+        if ($password_was_generated) {
+            $output->writeln("Your password is $password");
+        }
         return Command::SUCCESS;
     }
 

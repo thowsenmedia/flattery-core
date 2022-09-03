@@ -78,6 +78,9 @@ class Data {
             }
             
             $array = Yaml::parseFile($filePath);
+            if ( ! is_array($array) ) {
+                $array = [];
+            }
             $this->_loadedFiles[$handle] = $array;
         }
     }
@@ -109,6 +112,10 @@ class Data {
         
         $array = &$this->_loadedFiles[$file];
         
+        if ( ! is_array($array)) {
+            return false;
+        }
+
         return array_has($key, $array);
     }
     

@@ -12,6 +12,15 @@ class Response {
         return $response;
     }
 
+    public static function json(array $data, int $statusCode = 200): static
+    {
+        $response = new static();
+        $response->setContent(json_encode($data));
+        $response->setStatusCode($statusCode);
+        $response->setHeader('Content-Type', 'application/json');
+        return $response;
+    }
+
     public static function redirect(string $to): static
     {
         $response = new static();

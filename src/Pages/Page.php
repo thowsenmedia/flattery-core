@@ -91,6 +91,11 @@ class Page {
         return $this->getData($key);
     }
 
+    public function __isset(string $key): bool
+    {
+        return isset($this->_data[$key]);
+    }
+
     public function render(): string
     {
         return $this->getRenderer()->render();

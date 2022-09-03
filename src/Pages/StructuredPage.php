@@ -33,6 +33,18 @@ class StructuredPage extends Page {
             
             $this->children[$name] = $this->directory .'/'.$name .'.' .$extension;
         }
+
+        # order children based on the order specified?
+        if (isset($this->order)) {
+            $ordered = [];
+
+            foreach($this->order as $key) {
+                if (isset($this->children[$key])) {
+                    $ordered[$key] = $this->children[$key];
+                }
+            }
+            $this->children = $ordered;
+        }
     }
     
     public function getChildren():array

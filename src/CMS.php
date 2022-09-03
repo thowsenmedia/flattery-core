@@ -321,8 +321,6 @@ class CMS extends Container {
 
                 $parameters = $route->extractParametersFromRequest($request);
 
-                dump($parameters);
-
                 return $route->call($parameters);
             }
         }

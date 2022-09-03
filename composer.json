@@ -1,0 +1,25 @@
+{
+    "name": "thowsenmedia/flattery-core",
+    "description": "Core files for Flattery CMS.",
+    "type": "library",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "ThowsenMedia\\Flattery\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Petter L. Thowsen",
+            "email": "petterthowsen@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "symfony/yaml": "^5.3",
+        "symfony/console": "^5.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}

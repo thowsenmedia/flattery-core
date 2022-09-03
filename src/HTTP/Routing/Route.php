@@ -34,13 +34,17 @@ class Route {
 
         foreach($segments as $segment) {
             $type = 'literal';
+            $name = $segment;
 
             if (str_starts_with($segment, '{') and str_ends_with($segment, '}')) {
                 $type = 'parameter';
+                $name = preg_replace("/^{/", '', $name);
+                $name = preg_replace("/\??}/", "", $name);
             }
             
             $this->segments[$segment] = [
                 'type' => $type,
+                'name' => $name,
                 'required' => str_ends_with($segment, '?}') == false,
             ];
         }
@@ -85,11 +89,10 @@ class Route {
             $requestSegment = $request->segment($i);
             if ($options['type'] == 'parameter') {
                 if ($requestSegment !== null) {
-                    $parameters[$segment] = $requestSegment;
+                    $parameters[$options['name']] = $requestSegment;
                 }
             }
         }
-
         return $parameters;
     }
 

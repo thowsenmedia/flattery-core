@@ -92,6 +92,7 @@ class Route {
                     $parameters[$options['name']] = $requestSegment;
                 }
             }
+            $i += 1;
         }
         return $parameters;
     }

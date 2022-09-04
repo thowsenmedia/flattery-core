@@ -45,9 +45,17 @@ class Auth {
 
     public function attempt(string $username, string $password): bool
     {
+        # sanitize
         str_replace('.', '', $username);
 
+        # user exists?
+        if ( ! $this->data->has('users', $username)) {
+            return false;
+        }
+
+        # verify password
         $user = $this->data->get("users", $username);
+
         if (password_verify($password, $user['password'])) {
             return true;
         }

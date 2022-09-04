@@ -121,13 +121,13 @@ class CMS extends Container {
             return $mailer;
         });
 
-        $email = (new Email())
+/*         $email = (new Email())
             ->from('noreply@flattery.thowsenmedia.com')
             ->subject('Test Email')
             ->text('This is a test email')
             ->to('petterthowsen@gmail.com');
         
-        $this->mailer->send($email);
+        $this->mailer->send($email); */
     }
 
     private $styles = [];

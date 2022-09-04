@@ -12,9 +12,13 @@ class Input
         $this->input = $_REQUEST;
     }
 
-    public function has(string $key):bool
+    public function has(...$keys):bool
     {
-        return isset($this->input[$key]);
+        foreach($keys as $key) {
+            if ( ! isset($this->input[$key])) return false;
+        }
+        
+        return true;
     }
 
     public function hasFile(string $key):bool

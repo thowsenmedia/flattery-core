@@ -43,7 +43,7 @@ class Auth {
         return $token === $user['auth_token'];
     }
 
-    public function attempt(string $username, string $password)
+    public function attempt(string $username, string $password): bool
     {
         str_replace('.', '', $username);
 
@@ -55,7 +55,7 @@ class Auth {
         return false;
     }
 
-    public function login(string $username, string $password)
+    public function login(string $username, string $password): bool
     {
         $username = str_replace('.', '', $username);
 

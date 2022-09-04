@@ -27,8 +27,10 @@ use ThowsenMedia\Flattery\Pages\MarkdownPageRenderer;
 use ThowsenMedia\Flattery\Validation\Validator;
 use ThowsenMedia\Flattery\Validation\BasicRulesProvider;
 use ThowsenMedia\Flattery\HTML\Element;
+use ThowsenMedia\Flattery\Mail\Mailer;
 
 use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Mime\Email;
 
 /**
  * @property Event $event
@@ -112,6 +114,20 @@ class CMS extends Container {
 
             return $validator;
         }, false);
+
+        $this->bindClosure('Mailer', Mailer::class, function() {
+            $dsn = data()->get('config.system', 'mail.dsn');
+            $mailer = new Mailer($dsn);
+            return $mailer;
+        });
+
+        $email = (new Email())
+            ->from('noreply@flattery.thowsenmedia.com')
+            ->subject('Test Email')
+            ->text('This is a test email')
+            ->to('petterthowsen@gmail.com');
+        
+        $this->mailer->send($email);
     }
 
     private $styles = [];

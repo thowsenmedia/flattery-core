@@ -68,7 +68,11 @@ class Response {
     public function send()
     {
         foreach($this->headers as $key => $value) {
-            header($key .': ' .$value);
+            if ($key == 'Status-code') {
+                http_response_code($value);
+            }else {
+                header($key .': ' .$value);
+            }
         }
         
         echo $this->content;

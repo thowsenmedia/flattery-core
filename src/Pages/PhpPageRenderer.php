@@ -15,9 +15,10 @@ class PhpPageRenderer implements PageRendererInterface {
         $this->page = $page;
     }
 
-    public function render(): string
+    public function render(array $variables = []): string
     {
-        $view = View::make($this->page->getFile());
+        $view = View::make($this->page->getFile())
+        ->with($variables);
         $view->overrideSource($this->page->getSource());
         return $view->render();
     }

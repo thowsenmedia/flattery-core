@@ -29,6 +29,8 @@ class Page {
 
     protected array $_data;
 
+    protected array $_variables = [];
+
     protected PageRendererInterface $renderer;
 
     public function __construct(string $name, string $file, array $data, string $source)

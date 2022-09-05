@@ -6,6 +6,6 @@ interface PageRendererInterface {
 
     public function __construct(Page $page);
     
-    public function render();
+    public function render(array $variables = []);
 
 }

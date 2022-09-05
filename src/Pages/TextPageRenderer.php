@@ -15,7 +15,7 @@ class TextPageRenderer implements PageRendererInterface {
         $this->page = $page;
     }
 
-    public function render(): string
+    public function render(array $varibles = []): string
     {
         $html = $this->page->getSource();
         $html = strip_tags($html);

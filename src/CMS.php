@@ -221,14 +221,19 @@ class CMS extends Container {
         
         # load plugins
         $this->plugins->initialize($this->data->get('config.system', 'plugins.enabled'));
-        
+
+        #------------------------------
+        # Setup Routing
+        # 
+        #------------------------------
+
+        # init page routes
+        $this->pages->registerRoutes($this->router);
+
         # load routes from app dir
         if (file_exists(FLATTERY_PATH_APP .'/routes.php')) {
             require FLATTERY_PATH_APP .'/routes.php';
         }
-
-        # init page routes
-        $this->pages->registerRoutes($this->router);
 
         # go !
         $response = $this->kernel->handle($this->request);

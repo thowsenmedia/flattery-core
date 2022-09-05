@@ -42,6 +42,28 @@ class Page {
         $this->extension = array_pop($exploded);
     }
 
+    public function with(array $variables): static
+    {
+        $this->_variables = $variables;
+
+        foreach($this->_data as &$value) {
+            $matches = [];
+            preg_match_all("/{{[^\\n}]+}}/", $value, $matches);
+            foreach($matches as $ms) {
+                foreach($ms as $m) {
+                    $variableKey = trim($m, '}{');
+                    if (isset($this->_variables[$variableKey])) {
+                        $value = str_replace($m, $this->_variables[$variableKey], $value);
+                    }else {
+                        $value = str_replace($m, 'undefined variable "' .$variableKey .'"', $value);
+                    }
+                }
+            }
+        }
+
+        return $this;
+    }
+
     public function getRoutePath():string
     {
         return $this->name;

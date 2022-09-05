@@ -34,11 +34,11 @@ class BasicRulesProvider
     public static function max($value, $max)
     {
         if (is_numeric($value)) {
-            return $value <= $min;
+            return $value <= $max;
         }else if (is_string($value)) {
-            return strlen($value) <= $min;
+            return strlen($value) <= $max;
         }else if (is_array($value)) {
-            return count($value) <= $min;
+            return count($value) <= $max;
         }
     }
 

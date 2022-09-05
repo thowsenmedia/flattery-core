@@ -33,7 +33,7 @@ class Response {
     {
         $response = new static();
         $response->setHeader('Location', $_SERVER['HTTP_REFERER']);
-        $response->setStatus(303);
+        $response->setStatusCode(303);
         return $response;
     }
     

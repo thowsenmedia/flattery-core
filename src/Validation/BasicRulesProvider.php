@@ -33,7 +33,13 @@ class BasicRulesProvider
 
     public static function max($value, $max)
     {
-        return static::min(-$value, -$max);
+        if (is_numeric($value)) {
+            return $value <= $min;
+        }else if (is_string($value)) {
+            return strlen($value) <= $min;
+        }else if (is_array($value)) {
+            return count($value) <= $min;
+        }
     }
 
     public static function number($value)

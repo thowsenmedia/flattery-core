@@ -51,6 +51,7 @@ class CreateUserCommand extends Command
         }
 
         data()->set('users', $username, [
+            'username' => $username,
             'admin' => $input->getOption('admin'),
             'email' => $email,
             'password' => password_hash($password, PASSWORD_DEFAULT),

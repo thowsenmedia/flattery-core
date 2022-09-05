@@ -123,7 +123,8 @@ class Page {
 
     public function render(): string
     {
-        return $this->getRenderer()->render();
+        return $this->getRenderer()
+        ->render($this->_variables);
     }
     
     public function __toString(): string

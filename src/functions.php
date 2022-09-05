@@ -26,6 +26,11 @@ function humanize(string $string): string
 	return ucwords($string);
 }
 
+function e(string $s): string
+{
+	return htmlentities($s);
+}
+
 /**
  * Get a nested value from an associative array using dot-notation. For example
  * @example array_get('one.two', array('one' => array('two' => 'hello')))

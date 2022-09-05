@@ -15,7 +15,7 @@ class HtmlPageRenderer implements PageRendererInterface {
         $this->page = $page;
     }
 
-    public function render(): string
+    public function render(array $variables = []): string
     {
         $element = new Element("div");
         $element->innerHtml = $this->page->getSource();

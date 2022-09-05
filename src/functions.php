@@ -16,6 +16,7 @@ use ThowsenMedia\Flattery\Theme\Theme;
 function slugify(string $string): string
 {
 	$string = strtolower($string);
+	$string = str_replace('.', '', $string);
 	return urlencode($string);
 }
 

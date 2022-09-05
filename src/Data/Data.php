@@ -95,6 +95,11 @@ class Data {
         array_set($key, $value, $this->_loadedFiles[$file]);
     }
 
+    private function putKey(string $file, string $key, $value)
+    {
+        array_put($key, $value, $this->_loadedFiles[$file]);
+    }
+
     public function get(string $file, string $key = null, string $defaultReturnValue = null)
     {
         $this->loadFile($file, false);
@@ -137,4 +142,11 @@ class Data {
         }
     }
 
+    public function add(string $file, string $key, $value, bool $save = true)
+    {
+        $this->loadFile($file);
+        $this->putKey($file, $key, $value);
+
+        if ($save) $this->saveFile();
+    }
 }

@@ -56,7 +56,7 @@ class Page {
                     $variableKey = trim($m, '}{');
                     if (array_has($variableKey, $this->_variables)) {
                         $variableValue = array_get($variableKey, $this->_variables);
-                        $value = str_replace($m, $this->_variables[$variableKey], $value);
+                        $value = str_replace($m, array_get($variableKey, $this->_variables), $value);
                     }else {
                         $value = str_replace($m, 'undefined variable "' .$variableKey .'"', $value);
                     }

@@ -131,6 +131,14 @@ class Data {
         $array = $this->getKey($file, $key);
         return in_array($needle, $array, true);
     }
+    
+    public function count(string $file, string $key): int
+    {
+        $this->loadFile($file);
+        $array = $this->getKey($file, $key);
+        if (is_array($array)) return count($array);
+        return -1;
+    }
 
     public function set(string $file, string $key, $value, bool $save = true)
     {

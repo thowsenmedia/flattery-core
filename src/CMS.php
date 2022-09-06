@@ -106,9 +106,7 @@ class CMS extends Container {
         }, true);
 
         $this->bindClosure('validator', Validator::class, function() {
-            if (count(Validator::getRuleTypes()) == 0) {
-                BasicRulesProvider::register();
-            }
+            BasicRulesProvider::register();
 
             $validator = new Validator();
 

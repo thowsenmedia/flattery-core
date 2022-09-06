@@ -32,8 +32,15 @@ function e(string $s): string
 }
 
 function time_ago($datetime, $full = false) {
-    $now = new DateTime;
-    $ago = new DateTime($datetime);
+	if ($datetime instanceof DateTime) {
+		$ago = $datetime;
+	}else {
+		$ago = new DateTime();
+		$ago->setTimestamp($datetime);
+	}
+
+	$now = new DateTime;
+    
     $diff = $now->diff($ago);
 
     $diff->w = floor($diff->d / 7);

@@ -5,14 +5,20 @@ namespace ThowsenMedia\Flattery\Validation;
 class BasicRulesProvider
 {
 
+    private static bool $hasRegistered = false;
+
     public static function register()
     {
+        if (static::$hasRegistered) return;
+        
         foreach([
             'min','max','required','alpha-numeric',
         ] as $rule) {
             $method = str_replace('-', '_', $rule);
             Validator::registerRuleType($rule, [static::class, $method]);
         }
+
+        static::$hasRegistered = true;
     }
 
     public static function required($value)

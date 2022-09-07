@@ -17,7 +17,7 @@ class Validator
         return static::$ruleTypes;
     }
 
-    public static function runRule(string $rule, array $ruleOptions = [], mixed $value)
+    public static function runRule(string $rule, array $ruleOptions, mixed $value)
     {
         $callable = static::$ruleTypes[$rule];
         $args = $ruleOptions;
